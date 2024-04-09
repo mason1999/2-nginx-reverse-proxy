@@ -11,6 +11,7 @@ services:
       - 8080:80
       - 8081:81
       - 8082:82
+      - 8083:83 # Do this for the email server sending email
 
   ghost: # Listens on port 2368 internally
     image: ghost
@@ -24,6 +25,6 @@ services:
     container_name: hello_container
     command: ["-text", "Hello!"]
 
-  email: # Listens on port 8025 internally
+  email: # Listens on port 8025 internally and 1025 intenally for the email server
     image: mailhog/mailhog
     container_name: mailhog_container
