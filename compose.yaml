@@ -1,20 +1,22 @@
 version: '3.1'
 services:
-  ghost:
-    image: ghost
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 2368:2368
+      - 8080:80
+
+  ghost: # Listens on port 2368 internally
+    image: ghost
     environment:
       NODE_ENV: development
     
-  email:
+  email: # Listens on port 8025 internally
     image: mailhog/mailhog
     container_name: mailhog_container
-    ports:
-      - "8025:8025"
 
-  hello:
+  hello: # Listens on port 5678 internally
     image: hashicorp/http-echo
     command: ["-text", "Hello!"]
-    ports:
-      - "5678:5678"
