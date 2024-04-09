@@ -5,13 +5,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: nginx_image
+    container_name: nginx_container
     ports:
       - 8080:80
+      - 8081:81
 
   ghost: # Listens on port 2368 internally
     image: ghost
+    container_name: ghost_container
     environment:
       NODE_ENV: development
+      url: http://localhost:8081
     
   email: # Listens on port 8025 internally
     image: mailhog/mailhog
