@@ -10,6 +10,7 @@ services:
     ports:
       - 8080:80
       - 8081:81
+      - 8082:82
 
   ghost: # Listens on port 2368 internally
     image: ghost
@@ -18,10 +19,11 @@ services:
       NODE_ENV: development
       url: http://localhost:8081
     
+  hello: # Listens on port 5678 internally
+    image: hashicorp/http-echo
+    container_name: hello_container
+    command: ["-text", "Hello!"]
+
   email: # Listens on port 8025 internally
     image: mailhog/mailhog
     container_name: mailhog_container
-
-  hello: # Listens on port 5678 internally
-    image: hashicorp/http-echo
-    command: ["-text", "Hello!"]
